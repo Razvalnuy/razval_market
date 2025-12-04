@@ -10,9 +10,8 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
-	experimental: {
-		turbopackScopeHoisting: false,
-	},
+	transpilePackages: ["sanity"],
+	swcMinify: true,
 }
 
 export default nextConfig
