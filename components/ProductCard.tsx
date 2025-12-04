@@ -1,31 +1,10 @@
 "use client"
+import { Product } from "@/sanity.types"
 import { Flame, ShoppingCart, Star } from "lucide-react"
 import Link from "next/link"
 import { FC } from "react"
 
-interface SanityImage {
-	asset: {
-		_ref: string
-	}
-}
-
-interface ProductCardProps {
-	_id: string
-	productName: string
-	slug: { current: string }
-	productImages: SanityImage[]
-	description: string
-	price: number
-	discount: number
-	brand: string
-	categories: any[]
-	stock: number
-	productStatus: string
-	productType: string
-	featuredProduct: boolean
-}
-
-const ProductCard: FC<ProductCardProps> = ({
+const ProductCard: FC<Product> = ({
 	productName,
 	slug,
 	productImages,
@@ -37,7 +16,7 @@ const ProductCard: FC<ProductCardProps> = ({
 	productType,
 	featuredProduct = false,
 }) => {
-	const getImageUrl = (image: SanityImage): string => {
+	const getImageUrl = (image: Product["productImages"][0]): string => {
 		if (image?.asset?._ref) {
 			const match = image.asset._ref.match(/image-([^-]+)-(\d+x\d+)-(\w+)/)
 			if (match) {
@@ -58,7 +37,6 @@ const ProductCard: FC<ProductCardProps> = ({
 	return (
 		<Link href={`/market/${slug.current}`} className="block">
 			<div className="relative w-80 h-96 rounded-2xl overflow-hidden cursor-pointer group border border-white/10 hover:shadow-2xl shadow-[#00FF7F]/50 hover:shadow-[#00FF7F] transition-all duration-500">
-				{/* КОНТЕЙНЕР С ФИКСИРОВАННОЙ ВЫСОТОЙ */}
 				<div className="relative w-full h-full bg-neutral-950/80">
 					<img
 						src={mainImage}
