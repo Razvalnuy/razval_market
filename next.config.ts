@@ -1,7 +1,6 @@
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-	/* config options here */
 	// конфиг для изображений чтобы не ругались
 	images: {
 		remotePatterns: [
@@ -10,6 +9,9 @@ const nextConfig: NextConfig = {
 				hostname: "cdn.sanity.io",
 			},
 		],
+	},
+	experimental: {
+		turbopackScopeHoisting: false,
 	},
 }
 
