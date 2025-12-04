@@ -2,5 +2,5 @@ export const headerData = [
 	{ title: "Главная", href: "/" },
 	{ title: "Развал Маркет", href: "/market" },
 	// { title: "Контакты", href: "/contact" },
-	{ title: "О себе", href: "/about" },
+	{ title: "О Нас", href: "/about" },
 ]

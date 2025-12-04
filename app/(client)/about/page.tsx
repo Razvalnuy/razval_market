@@ -22,7 +22,7 @@ const About = () => {
 					</div>
 
 					<p className="text-neutral-200/90 text-2xl max-w-3xl mx-auto">
-						RazvalMarket - Всякая хуйня, которую невозможно объяснить, но всегда
+						RazvalMarket - всякая хуйня, которую невозможно объяснить, но всегда
 						можно закинуть в{" "}
 						<span className="text-[#00FF7F] shadow-[0_0_20px_rgba(0,255,127,0.6)]">
 							корзину

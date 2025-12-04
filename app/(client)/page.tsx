@@ -1,4 +1,4 @@
-// app/page.tsx - ПОЛНЫЙ КОД С ТЕМНЫМ OVERLAY НА МОБИЛКАХ
+// app/page.tsx - ОЧИЩЕННЫЙ КОД БЕЗ МУСОРНЫХ СТИЛЕЙ
 import Link from "next/link"
 
 export default function HomePage() {
@@ -6,7 +6,7 @@ export default function HomePage() {
 		<div className="min-h-screen">
 			<section className="w-full bg-gradient-to-r from-[#2d1b69] via-[#00FF7F] to-[#121212] text-neutral-50 relative overflow-hidden">
 				{/* ТЕМНЫЙ OVERLAY ТОЛЬКО НА МОБИЛКАХ */}
-				<div className="absolute inset-0 bg-linear-to-b from-black/50 to-black/10 md:hidden z-10" />
+				<div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/10 md:hidden z-10" />
 
 				<div className="relative z-20 mx-auto max-w-xs sm:max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl px-3 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24">
 					<div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10 xl:gap-12">
@@ -17,9 +17,7 @@ export default function HomePage() {
 
 							<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight line-clamp-2 md:line-clamp-none drop-shadow-lg">
 								Добро пожаловать на{" "}
-								<span className="text-[#ffe7d6] drop-shadow-md">
-									Развал Маркет
-								</span>
+								<span className="drop-shadow-md">Развал Маркет</span>
 							</h1>
 
 							<p className="text-sm sm:text-base md:text-lg text-neutral-100/95 leading-relaxed max-w-sm sm:max-w-md md:max-w-xl drop-shadow-md">
@@ -44,18 +42,13 @@ export default function HomePage() {
 							<div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
 								<Link
 									href="/market"
-									className="inline-flex items-center justify-center rounded-2xl px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm md:text-base font-semibold w-full sm:w-auto
-                    bg-[#00FF7F] text-black shadow-[0_0_12px_#00FF7F] sm:shadow-[0_0_18px_#00FF7F]
-                    hover:bg-[#00cc63] hover:shadow-[0_0_20px_#00FF7F] sm:hover:shadow-[0_0_26px_#00FF7F]
-                    transition-all duration-200 text-center backdrop-blur-sm"
+									className="inline-flex items-center justify-center rounded-2xl px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm md:text-base font-semibold w-full sm:w-auto bg-[#00FF7F] text-black shadow-[0_0_12px_#00FF7F] sm:shadow-[0_0_18px_#00FF7F] hover:bg-[#00cc63] hover:shadow-[0_0_20px_#00FF7F] sm:hover:shadow-[0_0_26px_#00FF7F] transition-all duration-200 text-center backdrop-blur-sm"
 								>
 									Развалиться по полной 💥
 								</Link>
 								<Link
 									href="/about"
-									className="inline-flex items-center justify-center rounded-2xl px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm md:text-base font-medium w-full sm:w-auto
-                    border border-white/30 sm:border-white/25 text-neutral-50
-                    hover:border-white hover:bg-white/10 backdrop-blur-sm transition-all duration-200 text-center"
+									className="inline-flex items-center justify-center rounded-2xl px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm md:text-base font-medium w-full sm:w-auto border border-white/30 sm:border-white/50 text-neutral-50 hover:border-white hover:bg-white/10 backdrop-blur-sm transition-all duration-200 text-center"
 								>
 									Узнать, что за движ ?
 								</Link>
@@ -78,7 +71,7 @@ export default function HomePage() {
 										<span className="text-[#00FF7F] shadow-[0_0_15px_rgba(0,255,127,0.8)]">
 											корзину
 										</span>
-										. Для новых пользователей хуйня в придачу!
+										.
 									</p>
 									<div className="flex items-center gap-1 sm:gap-2 pt-1 sm:pt-2">
 										<span className="text-xs sm:text-sm text-neutral-300 font-medium">
@@ -100,18 +93,14 @@ export default function HomePage() {
 				<h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-6 sm:mb-8 text-center md:text-left leading-tight">
 					Здесь лучшие{" "}
 					<span className="tracking-[0.08em] sm:tracking-[0.10em] text-neutral-300 font-medium">
-						"развальные"
+						&quot;развальные&quot;
 					</span>{" "}
 					предложения!
 				</h2>
 
 				<Link
 					href="/market"
-					className="group relative flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 rounded-3xl bg-[#002211]/50 backdrop-blur-md border border-[#00FF7F]/50
-            shadow-[0_0_25px_rgba(0,255,127,0.4)]
-            hover:shadow-[0_0_40px_rgba(0,255,127,0.7)]
-            hover:bg-[#004422]/70 hover:border-[#00FF7F]
-            transition-all duration-300 cursor-pointer p-4 sm:p-6 md:p-8 w-full"
+					className="group relative flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 rounded-3xl bg-[#002211]/50 backdrop-blur-md border border-[#00FF7F]/50 shadow-[0_0_25px_rgba(0,255,127,0.4)] hover:shadow-[0_0_40px_rgba(0,255,127,0.7)] hover:bg-[#004422]/70 hover:border-[#00FF7F] transition-all duration-300 cursor-pointer p-4 sm:p-6 md:p-8 w-full"
 				>
 					<div className="flex items-center gap-2 sm:gap-4 flex-1 w-full">
 						<div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#00FF7F] rounded-full shadow-[0_0_12px_#00FF7F] animate-ping flex-shrink-0" />
