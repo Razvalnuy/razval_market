@@ -1,4 +1,5 @@
 "use client"
+import { Product } from "@/sanity.types"; // ✅ Добавили импорт
 import { client } from "@/sanity/lib/client"
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState } from "react"
@@ -9,7 +10,8 @@ import Error from "./Error"
 import Loading from "./Loading"
 
 const ProductGroup = () => {
-	const [products, setProducts] = useState([])
+	// ✅ Типизированные состояния
+	const [products, setProducts] = useState<Product[]>([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
 
@@ -17,8 +19,9 @@ const ProductGroup = () => {
 		try {
 			setLoading(true)
 			setError(null)
-			const data = await client.fetch(`*[_type == "product"]`)
-			console.log('data', data)
+			// ✅ Типизированный fetch
+			const data = await client.fetch<Product[]>(`*[_type == "product"]`)
+			console.log("data", data)
 			setProducts(data || [])
 		} catch (error) {
 			console.error("Ошибка загрузки продуктов:", error)
@@ -49,7 +52,7 @@ const ProductGroup = () => {
 
 			<div className="flex flex-wrap gap-4 sm:gap-6 lg:gap-8 justify-center">
 				<AnimatePresence>
-					{products.map((product, index) => (
+					{products.map((product: Product, index) => (
 						<motion.div
 							key={product._id}
 							initial={{ opacity: 0, y: 50, scale: 0.9 }}

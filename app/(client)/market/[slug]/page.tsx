@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 interface ProductPageProps {
-	params: { slug: string }
+	params: Promise<{ slug: string }>
 }
 
 interface SanityImage {
@@ -22,7 +22,7 @@ function getImageUrl(image: SanityImage): string {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-	const { slug } = params
+	const { slug } = await params
 
 	const product = await client.fetch(
 		`*[_type == "product" && slug.current == $slug][0]{
@@ -71,7 +71,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
 					</Link>
 
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
-						{/* Фото слева - ИСПРАВЛЕНО ДЛЯ ВСЕХ ИЗОБРАЖЕНИЙ */}
 						<div className="relative w-full max-w-md mx-auto lg:mx-0 h-[480px] sm:h-[520px] lg:h-[600px]">
 							<div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-[#00FF7F]/40 border-4 border-[#00FF7F]/50 bg-neutral-950/80 backdrop-blur-xl group hover:shadow-3xl hover:shadow-[#00FF7F]/70 hover:border-[#00FF7F]/70 transition-all duration-500">
 								<Image
@@ -102,14 +101,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
 							</div>
 						</div>
 
-						{/* Текст и цена справа */}
 						<div className="space-y-6 lg:space-y-8 text-center lg:text-left">
 							<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight bg-gradient-to-r from-white to-[#00FF7F] bg-clip-text text-transparent drop-shadow-2xl">
 								{product.productName}
 							</h1>
 
 							<div className="space-y-4 lg:space-y-6 max-w-xl mx-auto lg:mx-0">
-								{/* Цена и скидка в одном flex-контейнере */}
 								<div className="flex flex-col sm:flex-row sm:justify-center lg:justify-start sm:items-baseline gap-4 lg:gap-6 flex-wrap">
 									<span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-[#00FF7F] to-[#00cc63] bg-clip-text text-transparent shadow-2xl drop-shadow-2xl flex-shrink-0 whitespace-nowrap">
 										{finalPrice.toLocaleString()} ₽

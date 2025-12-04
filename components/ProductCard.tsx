@@ -1,8 +1,13 @@
 "use client"
 import { Product } from "@/sanity.types"
 import { Flame, ShoppingCart, Star } from "lucide-react"
+import Image from "next/image"; // ✅ Заменили img на Image
 import Link from "next/link"
 import { FC } from "react"
+
+interface SanityImage {
+	asset?: { _ref: string }
+}
 
 const ProductCard: FC<Product> = ({
 	productName,
@@ -16,7 +21,7 @@ const ProductCard: FC<Product> = ({
 	productType,
 	featuredProduct = false,
 }) => {
-	const getImageUrl = (image: Product["productImages"][0]): string => {
+	const getImageUrl = (image: SanityImage): string => {
 		if (image?.asset?._ref) {
 			const match = image.asset._ref.match(/image-([^-]+)-(\d+x\d+)-(\w+)/)
 			if (match) {
@@ -35,14 +40,16 @@ const ProductCard: FC<Product> = ({
 		: []
 
 	return (
-		<Link href={`/market/${slug.current}`} className="block">
+		<Link href={slug ? `/market/${slug.current}` : "#"} className="block">
 			<div className="relative w-80 h-96 rounded-2xl overflow-hidden cursor-pointer group border border-white/10 hover:shadow-2xl shadow-[#00FF7F]/50 hover:shadow-[#00FF7F] transition-all duration-500">
 				<div className="relative w-full h-full bg-neutral-950/80">
-					<img
+					{/* ✅ Image вместо img */}
+					<Image
 						src={mainImage}
-						alt={productName}
-						className="w-full h-full object-contain object-top brightness-90 group-hover:brightness-100 transition-all duration-700"
-						loading="lazy"
+						alt={productName || ""}
+						fill
+						className="object-contain object-top brightness-90 group-hover:brightness-100 transition-all duration-700"
+						sizes="(max-width: 1024px) 100vw, 320px"
 					/>
 
 					<div className="absolute top-4 left-4 z-20 space-y-2">
