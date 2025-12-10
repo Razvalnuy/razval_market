@@ -10,7 +10,7 @@ const Header = async () => {
 	return (
 		<header
 			className="py-5 bg-[linear-gradient(135deg,rgba(255,255,255,0.08)_8%,transparent_0,transparent_50%,rgba(255,255,255,0.05)_0,rgba(255,255,255,0.05)_58%,transparent_0,transparent_100%)]
-    bg-size-[32px_32px]"
+    bg-size-[32px_32px] sticky top-0 z-50 backdrop-blur-md bg-neutral-900/80"
 		>
 			<Container className="flex items-center justify-between text-lightColor">
 				<div className="w-auto md:w-1/3 flex items-center justify-start gap-2.5 md:gap-0">
