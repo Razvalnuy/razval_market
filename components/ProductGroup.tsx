@@ -1,5 +1,6 @@
 "use client"
-import { Product } from "@/sanity.types"; // ✅ Добавили импорт
+
+import { Product } from "@/sanity.types"
 import { client } from "@/sanity/lib/client"
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState } from "react"
@@ -10,7 +11,6 @@ import Error from "./Error"
 import Loading from "./Loading"
 
 const ProductGroup = () => {
-	// ✅ Типизированные состояния
 	const [products, setProducts] = useState<Product[]>([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
@@ -19,9 +19,8 @@ const ProductGroup = () => {
 		try {
 			setLoading(true)
 			setError(null)
-			// ✅ Типизированный fetch
 			const data = await client.fetch<Product[]>(`*[_type == "product"]`)
-			console.log("data", data)
+			console.log("Успешно загрузил: ", data)
 			setProducts(data || [])
 		} catch (error) {
 			console.error("Ошибка загрузки продуктов:", error)
@@ -45,7 +44,7 @@ const ProductGroup = () => {
 				initial={{ opacity: 0, y: -30 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.6 }}
-				className="text-3xl md:text-4xl font-bold text-white text-center mb-12 bg-gradient-to-r from-[#00FF7F] to-[#00CC66] bg-clip-text text-transparent"
+				className="text-3xl md:text-4xl font-bold text-white text-center mb-12 bg-linear-to-r from-[#00FF7F] to-[#00CC66] bg-clip-text"
 			>
 				🔥 Развальные новинки уже здесь!
 			</motion.h2>
@@ -65,7 +64,7 @@ const ProductGroup = () => {
 							}}
 							whileHover={{ y: -10, transition: { duration: 0.3 } }}
 						>
-							<ProductCard {...product} />
+							<ProductCard product={product} />
 						</motion.div>
 					))}
 				</AnimatePresence>

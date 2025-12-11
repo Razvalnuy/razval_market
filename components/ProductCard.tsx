@@ -1,28 +1,17 @@
 "use client"
 
 import { Product } from "@/sanity.types"
-import { ShoppingCart, Star } from "lucide-react"
+import { Star } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { FC } from "react"
+import AddToCartButton from "./AddToCartButton"
 import PriceFormatter from "./PriceFormatter"
 
 interface SanityImage {
 	asset?: { _ref: string }
 }
 
-const ProductCardDark: FC<Product> = ({
-	productName,
-	slug,
-	productImages,
-	description,
-	price,
-	discount,
-	brand,
-	productStatus,
-	productType,
-	featuredProduct = false,
-}) => {
+const ProductCard = ({ product }: { product: Product }) => {
 	const getImageUrl = (image: SanityImage): string => {
 		if (image?.asset?._ref) {
 			const match = image.asset._ref.match(/image-([^-]+)-(\d+x\d+)-(\w+)/)
@@ -33,30 +22,32 @@ const ProductCardDark: FC<Product> = ({
 		return "/no_photo.webp"
 	}
 
-	const mainImage = productImages?.[0]
-		? getImageUrl(productImages[0])
+	const mainImage = product.productImages?.[0]
+		? getImageUrl(product.productImages[0])
 		: "/no_photo.webp"
+
+	const price = product?.price ?? 0
+	const discount = product?.discount ?? 0
 
 	const discountPrice = price - price * (discount / 100)
 
 	return (
 		<Link
-			href={slug ? `/market/${slug.current}` : "#"}
+			href={product.slug?.current ? `/market/${product.slug.current}` : "#"}
 			className="group relative block w-80 rounded-2xl overflow-hidden border hover:shadow-[#00FF7F] shadow-md hoverEffect"
 		>
-			<div className="relative h-85 ">
+			<div className="relative h-80">
 				<Image
 					src={mainImage}
-					alt={productName || ""}
+					alt={product.productName || "product image"}
 					fill
 					className="object-cover transition-transform duration-500 group-hover:scale-105"
 					sizes="(max-width: 1024px) 100vw, 320px"
 				/>
-
 				<div className="absolute top-3 right-3 flex flex-col gap-2">
-					{productStatus && (
+					{product.productStatus && (
 						<span className="flex items-center px-2 py-1 bg-emerald-400 text-black text-xs font-semibold rounded-full shadow">
-							{productStatus.toUpperCase()}
+							{product.productStatus.toUpperCase()}
 						</span>
 					)}
 					{discount > 0 && (
@@ -65,8 +56,7 @@ const ProductCardDark: FC<Product> = ({
 						</span>
 					)}
 				</div>
-
-				{featuredProduct && (
+				{product.featuredProduct && (
 					<div className="absolute bottom-3 right-3 bg-yellow-400/90 rounded-full p-2 shadow">
 						<Star className="w-5 h-5 text-slate-900 fill-slate-900" />
 					</div>
@@ -76,10 +66,10 @@ const ProductCardDark: FC<Product> = ({
 			<div className="p-5 flex flex-col justify-between h-[180px]">
 				<div>
 					<h3 className="text-lg font-semibold text-white line-clamp-1">
-						{productName}
+						{product.productName || "NoName"}
 					</h3>
 					<p className="text-sm text-slate-400 mt-1 line-clamp-2">
-						{description || `${brand} ${productType}`}
+						{product.description}
 					</p>
 				</div>
 
@@ -97,14 +87,11 @@ const ProductCardDark: FC<Product> = ({
 						)}
 					</div>
 
-					<button className="flex items-center gap-2 bg-emerald-400 text-neutral-900 text-sm font-semibold px-4 py-2 rounded-xl shadow hover:bg-emerald-300 transition-all">
-						<ShoppingCart className="w-4 h-4" />
-						Купить
-					</button>
+					<AddToCartButton product={product} />
 				</div>
 			</div>
 		</Link>
 	)
 }
 
-export default ProductCardDark
+export default ProductCard
