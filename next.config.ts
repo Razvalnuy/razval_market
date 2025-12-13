@@ -1,7 +1,6 @@
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-	// конфиг для изображений чтобы не ругались
 	images: {
 		remotePatterns: [
 			{
@@ -11,7 +10,6 @@ const nextConfig: NextConfig = {
 		],
 	},
 	transpilePackages: ["sanity"],
-	swcMinify: true,
 }
 
 export default nextConfig

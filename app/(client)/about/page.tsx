@@ -1,6 +1,6 @@
 import Container from "@/components/Container"
 import TelegramIcon from "@/components/TelegramIcons"
-import { Github, Mail, PhoneCall, Truck, Youtube } from "lucide-react"
+import { Github, Mail, Truck } from "lucide-react"
 import Link from "next/link"
 
 const About = () => {
@@ -37,7 +37,7 @@ const About = () => {
 						НАЙДИ МЕНЯ ВЕЗДЕ
 					</h2>
 
-					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
+					<div className="grid sm:grid-cols-2 lg:grid-cols-3">
 						{[
 							{
 								icon: TelegramIcon,
@@ -50,18 +50,6 @@ const About = () => {
 								href: "https://github.com/razvalnuy",
 								label: "GitHub",
 								text: "github.com/razvalnuy",
-							},
-							{
-								icon: Youtube,
-								href: "https://www.youtube.com/@razvalnuy",
-								label: "YouTube",
-								text: "youtube.com/@razvalnuy",
-							},
-							{
-								icon: PhoneCall,
-								href: "https://wa.me/79882743324",
-								label: "WhatsApp",
-								text: "+7 988 274-33-24",
 							},
 							{
 								icon: Mail,
