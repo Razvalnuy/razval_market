@@ -1,9 +1,9 @@
-// Error.tsx
+"use client"
 import { motion } from "framer-motion"
 
 interface ErrorProps {
 	message: string
-	onRetry: () => void
+	onRetry?: () => void
 }
 
 const Error = ({ message, onRetry }: ErrorProps) => (
@@ -25,8 +25,8 @@ const Error = ({ message, onRetry }: ErrorProps) => (
 		<motion.button
 			whileHover={{ scale: 1.05 }}
 			whileTap={{ scale: 0.95 }}
-			onClick={onRetry}
-			className="bg-gradient-to-r from-[#00FF7F] to-[#00CC66] text-slate-900 px-8 py-3 rounded-xl font-bold text-lg shadow-2xl hover:shadow-[#00FF7F]/50 transition-all duration-300"
+			onClick={onRetry || (() => window.location.reload())}
+			className="bg-linear-to-r from-[#00FF7F] to-[#00CC66] text-slate-900 px-8 py-3 rounded-xl font-bold text-lg shadow-2xl hover:shadow-[#00FF7F]/50 transition-all duration-300"
 		>
 			Попробовать снова
 		</motion.button>
